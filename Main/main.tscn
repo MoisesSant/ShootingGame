@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://jlmpmj1cfi07"]
+
+[ext_resource type="Script" uid="uid://6jjobwwm56sg" path="res://Enemy/spawn_component.gd" id="1_2w1kt"]
+[ext_resource type="PackedScene" uid="uid://cykiqkk722pgd" path="res://Player/player.tscn" id="1_53q0u"]
+
+[node name="main" type="Node2D" unique_id=846670985]
+position = Vector2(555, 322)
+
+[node name="SpawnComponent" type="Node" parent="." unique_id=772418641]
+script = ExtResource("1_2w1kt")
+spawn_cooldown = 0.2
+metadata/_custom_type_script = "uid://6jjobwwm56sg"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=973617556]
+zoom = Vector2(3, 3)
+limit_smoothed = true
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+
+[node name="player" parent="." unique_id=796541961 instance=ExtResource("1_53q0u")]
