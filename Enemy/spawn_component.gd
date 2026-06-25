@@ -3,7 +3,7 @@ extends Node
 
 ## EXPORTS
 @export var entity_scene: PackedScene = preload("res://Enemy/enemy.tscn")
-@export var spawn_cooldown: float
+@export var spawn_cooldown: float = 2.0
 
 ## INTERNALS
 var cooldown_timer: float = 0.0
@@ -27,15 +27,18 @@ func spawn_at_border():
 
 	if entity_instance:
 		get_tree().root.add_child(entity_instance)
+		can_spawn = false
+		cooldown_timer = spawn_cooldown
 
 func reset_cooldown():
 	can_spawn = true
-	cooldown_timer = spawn_cooldown
+	cooldown_timer = 0.0
 
 ## UTILS
 func _process(delta: float) -> void:
 	if not can_spawn:
 		cooldown_timer -= delta
 		if cooldown_timer <= 0:
-			spawn_at_border()
 			reset_cooldown()
+	else:
+		spawn_at_border()
